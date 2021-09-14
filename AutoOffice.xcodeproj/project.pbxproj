@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,11 @@
 		660E4A9426EB54C20013D49C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 660E4A9326EB54C20013D49C /* Preview Assets.xcassets */; };
 		660E4A9F26EB62F20013D49C /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660E4A9E26EB62F20013D49C /* CheckBoxView.swift */; };
 		660E4AA126EB630A0013D49C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660E4AA026EB630A0013D49C /* SignInView.swift */; };
+		660E4AA326EFD5660013D49C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660E4AA226EFD5660013D49C /* AppDelegate.swift */; };
+		660E4AA726EFD94C0013D49C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660E4AA626EFD94C0013D49C /* SceneDelegate.swift */; };
+		660E4AA926F0796E0013D49C /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660E4AA826F0796E0013D49C /* HelpView.swift */; };
+		660E4AAD26F0947D0013D49C /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 660E4AAC26F0947D0013D49C /* Networking */; };
+		660E4AB026F097FB0013D49C /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660E4AAF26F097FB0013D49C /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		660E4A9526EB54C20013D49C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		660E4A9E26EB62F20013D49C /* CheckBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		660E4AA026EB630A0013D49C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		660E4AA226EFD5660013D49C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		660E4AA626EFD94C0013D49C /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		660E4AA826F0796E0013D49C /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		660E4AAA26F08C7D0013D49C /* Networking */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Networking; path = Modules/Networking; sourceTree = "<group>"; };
+		660E4AAF26F097FB0013D49C /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				660E4AAD26F0947D0013D49C /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +51,10 @@
 		660E4A8026EB54C00013D49C = {
 			isa = PBXGroup;
 			children = (
+				660E4AAA26F08C7D0013D49C /* Networking */,
 				660E4A8B26EB54C00013D49C /* AutoOffice */,
 				660E4A8A26EB54C00013D49C /* Products */,
+				660E4AAB26F0947D0013D49C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +69,15 @@
 		660E4A8B26EB54C00013D49C /* AutoOffice */ = {
 			isa = PBXGroup;
 			children = (
+				660E4AAE26F097E20013D49C /* ControllerView */,
 				660E4A9B26EB621A0013D49C /* View */,
 				660E4A8C26EB54C00013D49C /* AutoOfficeApp.swift */,
 				660E4A8E26EB54C00013D49C /* ContentView.swift */,
 				660E4A9026EB54C20013D49C /* Assets.xcassets */,
 				660E4A9526EB54C20013D49C /* Info.plist */,
 				660E4A9226EB54C20013D49C /* Preview Content */,
+				660E4AA226EFD5660013D49C /* AppDelegate.swift */,
+				660E4AA626EFD94C0013D49C /* SceneDelegate.swift */,
 			);
 			path = AutoOffice;
 			sourceTree = "<group>";
@@ -79,8 +95,24 @@
 			children = (
 				660E4A9E26EB62F20013D49C /* CheckBoxView.swift */,
 				660E4AA026EB630A0013D49C /* SignInView.swift */,
+				660E4AA826F0796E0013D49C /* HelpView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		660E4AAB26F0947D0013D49C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		660E4AAE26F097E20013D49C /* ControllerView */ = {
+			isa = PBXGroup;
+			children = (
+				660E4AAF26F097FB0013D49C /* WebView.swift */,
+			);
+			path = ControllerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +131,9 @@
 			dependencies = (
 			);
 			name = AutoOffice;
+			packageProductDependencies = (
+				660E4AAC26F0947D0013D49C /* Networking */,
+			);
 			productName = AutoOffice;
 			productReference = 660E4A8926EB54C00013D49C /* AutoOffice.app */;
 			productType = "com.apple.product-type.application";
@@ -153,9 +188,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				660E4A8F26EB54C00013D49C /* ContentView.swift in Sources */,
+				660E4AB026F097FB0013D49C /* WebView.swift in Sources */,
 				660E4A9F26EB62F20013D49C /* CheckBoxView.swift in Sources */,
 				660E4AA126EB630A0013D49C /* SignInView.swift in Sources */,
+				660E4AA926F0796E0013D49C /* HelpView.swift in Sources */,
+				660E4AA326EFD5660013D49C /* AppDelegate.swift in Sources */,
 				660E4A8D26EB54C00013D49C /* AutoOfficeApp.swift in Sources */,
+				660E4AA726EFD94C0013D49C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +383,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		660E4AAC26F0947D0013D49C /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 660E4A8126EB54C00013D49C /* Project object */;
 }

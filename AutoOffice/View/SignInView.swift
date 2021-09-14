@@ -14,6 +14,8 @@ struct SignInView: View {
     @State var passShow = false
     @State var checked = true
 
+    @State var shoowHelp = false
+
     @State var trimVal: CGFloat = 0
 
     var body: some View {
@@ -40,6 +42,7 @@ struct SignInView: View {
                         .multilineTextAlignment(.center)
 
                     TextField("Введите логин", text: $login)
+                        .autocapitalization(.none)
                     Divider()
 
                 }
@@ -50,7 +53,13 @@ struct SignInView: View {
                         .multilineTextAlignment(.center)
 
                     HStack {
-                        TextField("Введите пароль", text: $password)
+                        if passShow {
+                            TextField("Введите пароль", text: $password)
+                                .autocapitalization(.none)
+                        } else {
+                            SecureField("Введите пароль", text: $password)
+                                .autocapitalization(.none)
+                        }
                         Button(action: { passShow.toggle() }, label: {
                             Image(systemName: self.passShow ? "eye.slash" : "eye")
                                 .accentColor(.gray)
@@ -59,43 +68,60 @@ struct SignInView: View {
                     Divider()
                 }
 
-                VStack(alignment: .leading) {
-                    Button(action: {
-                        if !self.checked {
-                            withAnimation(Animation.easeIn(duration: 0.8)) {
-                                self.trimVal = 1
-                                self.checked.toggle()
-                            }
-                        } else {
-                            withAnimation {
-                                self.trimVal = 0
-                                self.checked.toggle()
-                            }
-                        }
-                    }, label: {
-                        HStack {
-                            CheckBoxView(checked: $checked, trimVal: $trimVal)
-                            Text("Запомнить")
-                        }
-                    })
-                }
             }
             .padding(.horizontal)
 
-            VStack {
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            VStack (alignment: .center) {
+                Button(action: {
+                    if !self.checked {
+                        withAnimation(Animation.easeIn(duration: 0.8)) {
+                            self.trimVal = 1
+                            self.checked.toggle()
+                        }
+                    } else {
+                        withAnimation {
+                            self.trimVal = 0
+                            self.checked.toggle()
+                        }
+                    }
+                }, label: {
+                    HStack {
+                        CheckBoxView(checked: $checked, trimVal: $trimVal)
+                        Text("Запомнить")
+                    }
+                })
+
+                Button(action: {}, label: {
                     Text("Войти")
+                        .foregroundColor(.white)
+                        .frame(width: UIScreen.main.bounds.width - 120)
                 })
                 .padding(.all)
+                .background(Color("blue"))
+                .clipShape(Capsule())
                 Button(action: {}, label: {
                     Text("Забыли пароль")
+                        .foregroundColor(.white)
+                        .frame(width: UIScreen.main.bounds.width - 120)
                 })
                 .padding(.all)
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                .background(Color("blue"))
+                .clipShape(Capsule())
+                Button(action: {
+                    shoowHelp.toggle()
+                }, label: {
                     Text("Помощь")
+                        .foregroundColor(.white)
+                        .frame(width: UIScreen.main.bounds.width - 120)
+                })
+                .fullScreenCover(isPresented: self.$shoowHelp, content:{
+                    HelpView()
                 })
                 .padding(.all)
+                .background(Color("blue"))
+                .clipShape(Capsule())
             }
+            .padding(.horizontal)
 
         }
     }

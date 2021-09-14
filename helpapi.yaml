@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: AutOffice
+  description: sheremetev.aoserver.ru
+  version: 1.0.0
+servers:
+- url: https://sheremetev.aoserver.ru/?r=api/apps
+tags:
+- name: help
+  description: Help
+paths:
+  /help:
+    post:
+      tags:
+      - help
+      summary: Help
+      operationId: getHelp
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Help'
+        default:
+          description: enexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+components:
+  schemas:
+    Help:
+      type: object
+      properties:
+        content:
+          type: string
+    ErrorModel:
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          maximum: 600
+          minimum: 100
+          type: integer
