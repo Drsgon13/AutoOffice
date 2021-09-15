@@ -1,0 +1,104 @@
+openapi: 3.0.3
+info:
+  title: AutoOfficeAPI
+  description: sheremetev.aoserver.ru
+  version: 1.0.0
+servers:
+- url: https://sheremetev.aoserver.ru/?r=api/apps
+tags:
+- name: user
+  description: User
+- name: goods
+  description: Goods
+- name: good
+  description: Good
+- name: lessons
+  description: Lessons
+- name: lesson
+  description: Lesson
+
+paths:
+  /json/:
+    post:
+      tags:
+      - user
+      summary: getUserData
+      operationId: getUserData
+      parameters:
+        - name: login
+          in: query
+          description: Login
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: Password
+          schema:
+            type: string
+        - name: method
+          in: query
+          description: Method
+          schema:
+            type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        default:
+          description: enexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+
+components:
+  schemas:
+    UserInfo:
+      type: object
+      properties:
+        last_name:
+          type: string
+        name:
+          type: string
+        middle_name:
+          type: string
+        image:
+          type: string
+        phone_number:
+          type: string
+        error:
+          type: string
+
+    UserData:
+      type: object
+      properties:
+        login:
+          type: string
+        password:
+          type: string
+        method:
+          type: string
+
+    ErrorModel:
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          maximum: 600
+          minimum: 100
+          type: integer
+
+
+  requestBodies:
+    User:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserData'

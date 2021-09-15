@@ -8,22 +8,23 @@
 import SwiftUI
 import Networking
 
-final class NewsScreenViewModel: ObservableObject {
-    @Published var newsList: String = .init()
-
-    init() {
-        HelpAPI.getHelp { list, error in
-            self.newsList = (list?.content)!
-        }
-    }
-}
+//final class NewsScreenViewModel: ObservableObject {
+//    @Published var newsList: String = .init()
+//
+//    init() {
+//        HelpAPI.helpPost { list, error in
+//            self.newsList = (list?.content)!
+//        }
+//    }
+//}
 
 struct HelpView: View {
-    @StateObject var listViewModel = NewsScreenViewModel()
+//    @StateObject var listViewModel = NewsScreenViewModel()
 
     var body: some View {
         ZStack {
-            WebView(htmlString: listViewModel.newsList)
+//            WebView(htmlString: listViewModel.newsList)
+//            Text("HelpView")
         }
 
     }

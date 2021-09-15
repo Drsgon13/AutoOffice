@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Networking
 
 struct SignInView: View {
     @State var idshoop = ""
@@ -13,6 +14,8 @@ struct SignInView: View {
     @State var password = ""
     @State var passShow = false
     @State var checked = true
+
+    @State var method: String = "getUserData"
 
     @State var shoowHelp = false
 
@@ -91,7 +94,9 @@ struct SignInView: View {
                     }
                 })
 
-                Button(action: {}, label: {
+                Button(action: {
+                    entranceUser()
+                }, label: {
                     Text("Войти")
                         .foregroundColor(.white)
                         .frame(width: UIScreen.main.bounds.width - 120)
@@ -123,6 +128,15 @@ struct SignInView: View {
             }
             .padding(.horizontal)
 
+        }
+    }
+
+    func entranceUser() {
+        self.login = self.login.trimmingCharacters(in: .whitespaces)
+        self.password = self.password.trimmingCharacters(in: .whitespaces)
+        UserAPI.getUserData(login: login, password: password, method: method)
+        {test,error in
+            print("test = ", test?.lastName)
         }
     }
 }
