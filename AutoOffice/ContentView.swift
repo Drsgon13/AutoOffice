@@ -9,9 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
 
+    @StateObject var userData = UserDefaultData()
+
     var body: some View {
-        VStack {
-            SignInView()
+        VStack{
+            if userData.status{
+                GoodsView()
+            }
+            else{
+                SignInView()
+            }
+        }.animation(.spring())
+            .onAppear {
+                NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
+                    userData.status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+            }
         }
     }
 }

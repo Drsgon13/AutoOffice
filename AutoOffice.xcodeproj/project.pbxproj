@@ -18,6 +18,9 @@
 		660E4AA926F0796E0013D49C /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660E4AA826F0796E0013D49C /* HelpView.swift */; };
 		660E4AB026F097FB0013D49C /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660E4AAF26F097FB0013D49C /* WebView.swift */; };
 		660E4ACB26F223A40013D49C /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 660E4ACA26F223A40013D49C /* Networking */; };
+		66DA6B6226F31FD000882C44 /* GoodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DA6B6126F31FD000882C44 /* GoodsView.swift */; };
+		66DA6B6426F3283D00882C44 /* UserDefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DA6B6326F3283D00882C44 /* UserDefaultData.swift */; };
+		66DA6B6726F32D3800882C44 /* AutoOfficeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 66DA6B6626F32D3800882C44 /* AutoOfficeUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		660E4AA826F0796E0013D49C /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		660E4AAA26F08C7D0013D49C /* Networking */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Networking; path = Modules/Networking; sourceTree = "<group>"; };
 		660E4AAF26F097FB0013D49C /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		66DA6B6126F31FD000882C44 /* GoodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsView.swift; sourceTree = "<group>"; };
+		66DA6B6326F3283D00882C44 /* UserDefaultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultData.swift; sourceTree = "<group>"; };
+		66DA6B6526F32D1F00882C44 /* AutoOfficeUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AutoOfficeUI; path = Modules/AutoOfficeUI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +48,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				660E4ACB26F223A40013D49C /* Networking in Frameworks */,
+				66DA6B6726F32D3800882C44 /* AutoOfficeUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +58,7 @@
 		660E4A8026EB54C00013D49C = {
 			isa = PBXGroup;
 			children = (
+				66DA6B6526F32D1F00882C44 /* AutoOfficeUI */,
 				660E4AAA26F08C7D0013D49C /* Networking */,
 				660E4A8B26EB54C00013D49C /* AutoOffice */,
 				660E4A8A26EB54C00013D49C /* Products */,
@@ -69,6 +77,7 @@
 		660E4A8B26EB54C00013D49C /* AutoOffice */ = {
 			isa = PBXGroup;
 			children = (
+				66DA6B6026F31E3E00882C44 /* UserDefault */,
 				660E4AAE26F097E20013D49C /* ControllerView */,
 				660E4A9B26EB621A0013D49C /* View */,
 				660E4A8C26EB54C00013D49C /* AutoOfficeApp.swift */,
@@ -96,6 +105,7 @@
 				660E4A9E26EB62F20013D49C /* CheckBoxView.swift */,
 				660E4AA026EB630A0013D49C /* SignInView.swift */,
 				660E4AA826F0796E0013D49C /* HelpView.swift */,
+				66DA6B6126F31FD000882C44 /* GoodsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -113,6 +123,14 @@
 				660E4AAF26F097FB0013D49C /* WebView.swift */,
 			);
 			path = ControllerView;
+			sourceTree = "<group>";
+		};
+		66DA6B6026F31E3E00882C44 /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				66DA6B6326F3283D00882C44 /* UserDefaultData.swift */,
+			);
+			path = UserDefault;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +151,7 @@
 			name = AutoOffice;
 			packageProductDependencies = (
 				660E4ACA26F223A40013D49C /* Networking */,
+				66DA6B6626F32D3800882C44 /* AutoOfficeUI */,
 			);
 			productName = AutoOffice;
 			productReference = 660E4A8926EB54C00013D49C /* AutoOffice.app */;
@@ -189,8 +208,10 @@
 			files = (
 				660E4A8F26EB54C00013D49C /* ContentView.swift in Sources */,
 				660E4AB026F097FB0013D49C /* WebView.swift in Sources */,
+				66DA6B6426F3283D00882C44 /* UserDefaultData.swift in Sources */,
 				660E4A9F26EB62F20013D49C /* CheckBoxView.swift in Sources */,
 				660E4AA126EB630A0013D49C /* SignInView.swift in Sources */,
+				66DA6B6226F31FD000882C44 /* GoodsView.swift in Sources */,
 				660E4AA926F0796E0013D49C /* HelpView.swift in Sources */,
 				660E4AA326EFD5660013D49C /* AppDelegate.swift in Sources */,
 				660E4A8D26EB54C00013D49C /* AutoOfficeApp.swift in Sources */,
@@ -388,6 +409,10 @@
 		660E4ACA26F223A40013D49C /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
+		};
+		66DA6B6626F32D3800882C44 /* AutoOfficeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AutoOfficeUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

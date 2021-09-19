@@ -7,9 +7,13 @@
 
 import SwiftUI
 import Networking
+import AutoOfficeUI
 
 struct SignInView: View {
-    @State var idshoop = ""
+
+    @StateObject var userData = UserDefaultData()
+
+    @State var idshop = ""
     @State var login = ""
     @State var password = ""
     @State var passShow = false
@@ -34,7 +38,7 @@ struct SignInView: View {
                     Text("ID магазина")
                         .multilineTextAlignment(.center)
 
-                    TextField("Введите ID магазина", text: $idshoop)
+                    TextField("Введите ID магазина", text: $idshop)
                         .autocapitalization(.none)
                     Divider()
                 }
@@ -132,11 +136,21 @@ struct SignInView: View {
     }
 
     func entranceUser() {
+        self.idshop = self.idshop.trimmingCharacters(in: .whitespaces)
         self.login = self.login.trimmingCharacters(in: .whitespaces)
         self.password = self.password.trimmingCharacters(in: .whitespaces)
-        UserAPI.getUserData(login: login, password: password, method: method)
-        {test,error in
-            print("test = ", test?.lastName)
+        
+        UserAPI.getUserData(user: User.init(login: login, password: password, method: method))
+        { user, error in
+            if (user?.error == "") {
+                if(checked) {
+                    UserDefaults.standard.set(true, forKey: "status")
+                }
+                UserDefaults.standard.set(self.idshop, forKey: "idshop")
+                UserDefaults.standard.set(self.login, forKey: "login")
+                UserDefaults.standard.set(self.password, forKey: "password")
+            }
+            
         }
     }
 }

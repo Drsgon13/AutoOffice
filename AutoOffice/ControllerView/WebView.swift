@@ -30,7 +30,6 @@ struct WebView: UIViewRepresentable {
 
     public func updateUIView(_ uiView: WKWebView, context: Context) {
         uiView.loadHTMLString(htmlString, baseURL: nil)
-
     }
 
 }

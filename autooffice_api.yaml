@@ -4,8 +4,13 @@ info:
   description: sheremetev.aoserver.ru
   version: 1.0.0
 servers:
-- url: https://sheremetev.aoserver.ru/?r=api/apps
+- url: https://sheremetev.aoserver.ru?r=api/apps
+- url: https://arsamandi.aoserver.ru?r=api/apps
+- url: https://sonyatrue.aoserver.ru?r=api/apps
+
 tags:
+- name: help
+  description: Help
 - name: user
   description: User
 - name: goods
@@ -18,28 +23,37 @@ tags:
   description: Lesson
 
 paths:
+
+  /help/:
+    post:
+      tags:
+        - help
+      summary: getHelp
+      operationId: getHelp
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Help'
+        default:
+          description: enexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+
+
+
   /json/:
     post:
       tags:
       - user
       summary: getUserData
       operationId: getUserData
-      parameters:
-        - name: login
-          in: query
-          description: Login
-          schema:
-            type: string
-        - name: password
-          in: query
-          description: Password
-          schema:
-            type: string
-        - name: method
-          in: query
-          description: Method
-          schema:
-            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/User'
       responses:
         "200":
           description: success
@@ -54,8 +68,38 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
 
+  /json1/:
+    post:
+      tags:
+      - goods
+      summary: getUserGoods
+      operationId: getUserGoods
+      requestBody:
+        $ref: '#/components/requestBodies/Goods'
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoodsInfo'
+        default:
+          description: enexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+
+
 components:
   schemas:
+
+    Help:
+      type: object
+      properties:
+        content:
+          type: string
+
     UserInfo:
       type: object
       properties:
@@ -72,7 +116,34 @@ components:
         error:
           type: string
 
-    UserData:
+    GoodsInfo:
+      type: object
+      properties:
+        id_goods:
+          type: integer
+        name:
+          type: string
+        creationDate:
+          type: string
+        image:
+          type: string
+        trainingId:
+          type: integer
+        idFavorite:
+          type: integer
+
+    User:
+      type: object
+      properties:
+        login:
+          type: string
+        password:
+          type: string
+        method:
+          type: string
+
+
+    Goods:
       type: object
       properties:
         login:
@@ -101,4 +172,10 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/UserData'
+            $ref: '#/components/schemas/User'
+
+    Goods:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Goods'
