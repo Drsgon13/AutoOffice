@@ -9,6 +9,7 @@ import SwiftUI
 import AutoOfficeUI
 
 struct GoodView: View {
+    
     @State var idgoods: String
 
     init(idgoods: String) {
