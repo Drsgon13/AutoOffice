@@ -72,12 +72,14 @@ struct GoodScreen: View {
             VStack {
                 Text("Good")
             HStack {
+                if (image != "") {
                 let imgURL = URL(string: image)
                 AsyncImage(url: imgURL!,
                            placeholder: { Text("Loading ...") },
                            image: { Image(uiImage: $0).resizable() })
                     .frame(width: 80, height: 80)
                 Text(verbatim: goods)
+                }
             }
             }
         }
@@ -102,12 +104,14 @@ struct LessonsScreen: View {
             VStack {
                 Text("Lessons")
             HStack {
+                if (image != "") {
                 let imgURL = URL(string: image)
                 AsyncImage(url: imgURL!,
                            placeholder: { Text("Loading ...") },
                            image: { Image(uiImage: $0).resizable() })
                     .frame(width: 80, height: 80)
                 Text(verbatim: goods)
+            }
             }
             }
         }
