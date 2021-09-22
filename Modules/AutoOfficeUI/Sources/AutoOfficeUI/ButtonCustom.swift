@@ -20,13 +20,9 @@ public struct ButtonCustom<Content>: View where Content: View {
 
     public var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 6)
-                .foregroundColor(.gray)
             HStack {
                 label()
             }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 14)
         }
         .fixedSize(horizontal: true, vertical: true)
         .simultaneousGesture(
@@ -42,6 +38,7 @@ struct ButtonCustom_Previews: PreviewProvider {
         ButtonCustom(action: {}) {
             VStack {
                 Text("I'm Button")
+                    .foregroundColor(.white)
             }
         }
     }

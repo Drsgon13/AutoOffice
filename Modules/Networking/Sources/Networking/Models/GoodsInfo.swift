@@ -10,31 +10,29 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct GoodsInfo: Codable, Hashable {
+public struct GoodsInfo: Codable, Hashable, Identifiable {
 
-    public var idGoods: Int?
-    public var name: String?
+    public var id = UUID()
+    public var idGoods: String?
+    public var goods: String?
     public var creationDate: String?
     public var image: String?
-    public var trainingId: Int?
-    public var idFavorite: Int?
+    public var idTraining: String?
 
-    public init(idGoods: Int? = nil, name: String? = nil, creationDate: String? = nil, image: String? = nil, trainingId: Int? = nil, idFavorite: Int? = nil) {
+    public init(idGoods: String? = nil, goods: String? = nil, creationDate: String? = nil, image: String? = nil, idTraining: String? = nil) {
         self.idGoods = idGoods
-        self.name = name
+        self.goods = goods
         self.creationDate = creationDate
         self.image = image
-        self.trainingId = trainingId
-        self.idFavorite = idFavorite
+        self.idTraining = idTraining
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case idGoods = "id_goods"
-        case name
-        case creationDate
+        case goods
+        case creationDate = "creation_date"
         case image
-        case trainingId
-        case idFavorite
+        case idTraining = "id_training"
     }
 
     // Encodable protocol methods
@@ -42,11 +40,10 @@ public struct GoodsInfo: Codable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(idGoods, forKey: .idGoods)
-        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(goods, forKey: .goods)
         try container.encodeIfPresent(creationDate, forKey: .creationDate)
         try container.encodeIfPresent(image, forKey: .image)
-        try container.encodeIfPresent(trainingId, forKey: .trainingId)
-        try container.encodeIfPresent(idFavorite, forKey: .idFavorite)
+        try container.encodeIfPresent(idTraining, forKey: .idTraining)
     }
 }
 

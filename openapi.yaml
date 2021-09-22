@@ -20,8 +20,9 @@ tags:
   description: Lessons
 - name: lesson
   description: Lesson
-
+  
 paths:
+
   /help/:
     post:
       tags:
@@ -41,6 +42,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
+      
+  
 
   /json1/:
     post:
@@ -63,7 +66,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
-
+                
   /json/:
     post:
       tags:
@@ -76,44 +79,19 @@ paths:
         "200":
           description: success
           content:
-            application/json:
+            application/json: 
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/GoodsInfo'
-
+                
         default:
           description: enexpected error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorModel'
-
-  /json2/:
-    post:
-      tags:
-      - lesssons
-      summary: getLessons
-      operationId: getLessons
-      requestBody:
-        $ref: '#/components/requestBodies/Lessons'
-      responses:
-        "200":
-          description: success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LessonsInfo'
-
-        default:
-          description: enexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-
+                $ref: '#/components/schemas/ErrorModel'              
+        
 
 components:
   schemas:
@@ -122,7 +100,7 @@ components:
       properties:
         content:
           type: string
-
+  
     UserInfo:
       type: object
       properties:
@@ -138,8 +116,8 @@ components:
           type: string
         error:
           type: string
-
-
+          
+          
     User:
       type: object
       properties:
@@ -149,43 +127,24 @@ components:
           type: string
         method:
           type: string
-
+          
     GoodsInfo:
       type: object
       properties:
-          id_goods:
+          id_goods: 
             type: string
-          goods:
+          goods: 
             type: string
-          creation_date:
+          creation_date: 
             type: string
-          image:
+          image: 
             type: string
           id_training:
             type: string
-
-    LessonsInfo:
-      type: object
-      properties:
-          day:
-            type: string
-          access:
-            type: boolean
-          description:
-            type: string
-          request_report:
-            type: string
-          training_lessons:
-            type: string
-          number:
-            type: integer
-          id_training_lessons:
-            type: string
-          check_report:
-            type: string
-
-
-
+          id_favorite: 
+            type: string       
+          
+          
     Goods:
       type: object
       properties:
@@ -194,20 +153,8 @@ components:
         password:
           type: string
         method:
-          type: string
-
-    Lessons:
-      type: object
-      properties:
-        login:
-          type: string
-        password:
-          type: string
-        method:
-          type: string
-        id_training:
-          type: string
-
+          type: string      
+    
     ErrorModel:
       required:
       - code
@@ -220,24 +167,17 @@ components:
           maximum: 600
           minimum: 100
           type: integer
-
+          
+          
   requestBodies:
     User:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/User'
-
+            
     Goods:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Goods'
-
-    Lessons:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Lessons'
-
-

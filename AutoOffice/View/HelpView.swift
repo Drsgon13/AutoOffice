@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Networking
+import AutoOfficeUI
 
 final class HelpModel: ObservableObject {
     @Published var helpContent: String = .init()
@@ -21,11 +22,18 @@ struct HelpView: View {
     @StateObject var helpViewModel = HelpModel()
 
     var body: some View {
-        ZStack {
+        VStack {
+            HStack {
+                NavPopButton(destination: .root){
+                    Image(systemName: "arrow.left")
+                    Text("Назад")
+                }
+            }
+            .padding(.top, 5.0)
+            .padding(.leading, 12.0)
+            .frame(maxWidth: .infinity, alignment: .leading)
             WebView(htmlString: helpViewModel.helpContent)
-//            Text(String(helpViewModel.helpContent))
         }
-
     }
 }
 

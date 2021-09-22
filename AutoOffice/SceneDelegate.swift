@@ -11,13 +11,11 @@ import SwiftUI
 class SceneDelegate: NSObject, UIWindowSceneDelegate {
   func sceneDidBecomeActive(_ scene: UIScene) {
     // ...
-    print("sceneDidBecomeActive")
   }
 
 
     func sceneDidEnterBackground(_ scene: UIScene) {
       // ...
-      print("sceneDidEnterBackground")
     }
 
   // ...

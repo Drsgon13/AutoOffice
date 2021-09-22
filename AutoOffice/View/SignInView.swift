@@ -19,6 +19,10 @@ struct SignInView: View {
     @State var passShow = false
     @State var checked = true
 
+    @State var message = ""
+    @State var alert = false
+    @State var alertUser = false
+
     @State var method: String = "getUserData"
 
     @State var shoowHelp = false
@@ -26,6 +30,7 @@ struct SignInView: View {
     @State var trimVal: CGFloat = 0
 
     var body: some View {
+        
         VStack {
             Text("АвтоОфис")
                 .font(.title)
@@ -116,21 +121,23 @@ struct SignInView: View {
                 .padding(.all)
                 .background(Color("blue"))
                 .clipShape(Capsule())
-                Button(action: {
-                    shoowHelp.toggle()
-                }, label: {
-                    Text("Помощь")
+                NavPushButton(destination: HelpView()) {                    Text("Помощь")
                         .foregroundColor(.white)
                         .frame(width: UIScreen.main.bounds.width - 120)
-                })
-                .fullScreenCover(isPresented: self.$shoowHelp, content:{
-                    HelpView()
-                })
+                }
                 .padding(.all)
                 .background(Color("blue"))
                 .clipShape(Capsule())
             }
             .padding(.horizontal)
+
+            .alert(isPresented: $alert) {
+                Alert(title: Text("Error"), message: Text(self.message), dismissButton: .default(Text("Ok")))
+            }
+
+            .alert(isPresented: $alertUser) {
+                Alert(title: Text("Error"), message: Text(self.message), dismissButton: .default(Text("Ok")))
+            }
 
         }
     }
@@ -142,13 +149,27 @@ struct SignInView: View {
         
         UserAPI.getUserData(user: User.init(login: login, password: password, method: method))
         { user, error in
-            if (user?.error == "") {
-                if(checked) {
-                    UserDefaults.standard.set(true, forKey: "status")
-                }
-                UserDefaults.standard.set(self.idshop, forKey: "idshop")
-                UserDefaults.standard.set(self.login, forKey: "login")
-                UserDefaults.standard.set(self.password, forKey: "password")
+            if let user = user {
+                print("user = ", user)
+                if (user.error == nil) {
+                    if(checked) {
+                        UserDefaults.standard.set(true, forKey: "status")
+                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                    } else {
+                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                    }
+                    UserDefaults.standard.set(self.idshop, forKey: "idshop")
+                    UserDefaults.standard.set(self.login, forKey: "login")
+                    UserDefaults.standard.set(self.password, forKey: "password")
+                    } else {
+                        self.message = user.error!
+                        self.alertUser.toggle()
+                    }
+
+            } else if let error = error {
+                print("user = ", error.localizedDescription)
+                self.message = error.localizedDescription
+                self.alert.toggle()
             }
             
         }

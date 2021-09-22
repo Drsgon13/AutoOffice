@@ -10,7 +10,7 @@ import Foundation
 public typealias OpenAPIClientAPI = OpenAPIClient
 
 open class OpenAPIClient {
-    public static var basePath = "https://sheremetev.aoserver.ru?r=api/apps"
+    public static var basePath = "https://sheremetev.aoserver.ru/?r=api/apps"
     public static var customHeaders: [String: String] = [:]
     public static var credential: URLCredential?
     public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()

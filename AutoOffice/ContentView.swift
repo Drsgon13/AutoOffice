@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AutoOfficeUI
 
 struct ContentView: View {
 
@@ -14,10 +15,14 @@ struct ContentView: View {
     var body: some View {
         VStack{
             if userData.status{
-                GoodsView()
+                NavControllerView(transition: .custom(.moveAndFade)) {
+                    GoodsView()
+                }
             }
             else{
-                SignInView()
+                NavControllerView(transition: .custom(.moveAndFade)) {
+                    SignInView()
+                }
             }
         }.animation(.spring())
             .onAppear {

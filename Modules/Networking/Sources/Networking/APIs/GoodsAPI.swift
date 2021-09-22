@@ -19,7 +19,7 @@ open class GoodsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getUserGoods(goods: Goods? = nil, apiResponseQueue: DispatchQueue = OpenAPIClient.apiResponseQueue, completion: @escaping ((_ data: GoodsInfo?, _ error: Error?) -> Void)) {
+    open class func getUserGoods(goods: Goods? = nil, apiResponseQueue: DispatchQueue = OpenAPIClient.apiResponseQueue, completion: @escaping ((_ data: [GoodsInfo]?, _ error: Error?) -> Void)) {
         getUserGoodsWithRequestBuilder(goods: goods).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
@@ -32,11 +32,11 @@ open class GoodsAPI {
 
     /**
      getUserGoods
-     - POST /json1/
+     - POST /json/
      - parameter goods: (body)  (optional)
-     - returns: RequestBuilder<GoodsInfo> 
+     - returns: RequestBuilder<[GoodsInfo]> 
      */
-    open class func getUserGoodsWithRequestBuilder(goods: Goods? = nil) -> RequestBuilder<GoodsInfo> {
+    open class func getUserGoodsWithRequestBuilder(goods: Goods? = nil) -> RequestBuilder<[GoodsInfo]> {
         let localVariablePath = "/json/"
         let localVariableURLString = OpenAPIClient.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: goods)
@@ -49,7 +49,7 @@ open class GoodsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GoodsInfo>.Type = OpenAPIClient.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<[GoodsInfo]>.Type = OpenAPIClient.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
