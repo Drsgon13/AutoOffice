@@ -13,7 +13,7 @@ final class LessonsViewModel: ObservableObject {
 
     @Published var lessonsList: [LessonsInfo] = .init()
     @ObservedObject var userDefault = UserDefaultData()
-    @State var id_traning = "91"
+    @State var id_traning = "37"
 
     init() {
         LessonsAPI.getLessons(lessons: Lessons(login: userDefault.login, password: userDefault.password, method: "getLessons", idTraining: id_traning)) { list, error in
