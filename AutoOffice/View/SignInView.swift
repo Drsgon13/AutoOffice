@@ -121,7 +121,7 @@ struct SignInView: View {
                 .padding(.all)
                 .background(Color("blue"))
                 .clipShape(Capsule())
-                NavPushButton(destination: HelpView()) {                    Text("Помощь")
+                NavPushButton(destination: HelpView(showHelp: $shoowHelp)) {                    Text("Помощь")
                         .foregroundColor(.white)
                         .frame(width: UIScreen.main.bounds.width - 120)
                 }

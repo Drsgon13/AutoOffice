@@ -16,7 +16,7 @@ struct ContentView: View {
         VStack{
             if userData.status{
                 NavControllerView(transition: .custom(.moveAndFade)) {
-                    GoodsView()
+                    BaseView()
                 }
             }
             else{

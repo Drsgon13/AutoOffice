@@ -20,18 +20,23 @@ final class HelpModel: ObservableObject {
 
 struct HelpView: View {
     @StateObject var helpViewModel = HelpModel()
+    @Binding var showHelp: Bool
+
+
 
     var body: some View {
         VStack {
-            HStack {
-                NavPopButton(destination: .root){
-                    Image(systemName: "arrow.left")
-                    Text("Назад")
+            if (!showHelp) {
+                HStack {
+                    NavPopButton(destination: .root){
+                        Image(systemName: "arrow.left")
+                        Text("Назад")
+                    }
                 }
+                .padding(.top, 5.0)
+                .padding(.leading, 12.0)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .padding(.top, 5.0)
-            .padding(.leading, 12.0)
-            .frame(maxWidth: .infinity, alignment: .leading)
             WebView(htmlString: helpViewModel.helpContent)
         }
     }
@@ -39,6 +44,6 @@ struct HelpView: View {
 
 struct HelpView_Previews: PreviewProvider {
     static var previews: some View {
-        HelpView()
+        HelpView(showHelp: .constant(false))
     }
 }

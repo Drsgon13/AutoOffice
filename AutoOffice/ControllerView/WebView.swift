@@ -2,7 +2,7 @@
 //  WebView.swift
 //  AutoOffice
 //
-//  Created by Илья Проскурнев on 14.09.2021.
+//  Created by Илья Проскурнев on 09.08.2021.
 //
 
 import SwiftUI
@@ -11,6 +11,7 @@ import WebKit
 struct WebView: UIViewRepresentable {
 
     var htmlString: String
+
 
     public func makeUIView(context: Context) -> WKWebView {
         let preferences = WKPreferences()
@@ -25,11 +26,12 @@ struct WebView: UIViewRepresentable {
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.isScrollEnabled = true
         return webView
-
+        
     }
 
     public func updateUIView(_ uiView: WKWebView, context: Context) {
         uiView.loadHTMLString(htmlString, baseURL: nil)
+
     }
 
 }

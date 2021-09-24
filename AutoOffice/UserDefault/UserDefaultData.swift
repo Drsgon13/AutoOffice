@@ -14,4 +14,6 @@ public class UserDefaultData: ObservableObject {
     @Published var login = UserDefaults.standard.value(forKey: "login") as? String
     @Published var password = UserDefaults.standard.value(forKey: "password") as? String
 
+    @Published var imageProfile = UserDefaults.standard.value(forKey: "imageProfile") as? String
+
 }

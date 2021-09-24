@@ -9,6 +9,13 @@ import SwiftUI
 import AutoOfficeUI
 
 struct LessonView: View {
+
+    @State var id_training_lessons: String
+
+    init(id_training_lessons: String) {
+        self.id_training_lessons = id_training_lessons
+    }
+
     var body: some View {
         VStack {
             HStack {
@@ -30,6 +37,6 @@ struct LessonView: View {
 
 struct LessonView_Previews: PreviewProvider {
     static var previews: some View {
-        LessonView()
+        LessonView(id_training_lessons: "0")
     }
 }

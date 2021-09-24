@@ -18,7 +18,6 @@ final class GoodsViewModel: ObservableObject {
         GoodsAPI.getUserGoods(goods: Goods(login: userDefault.login, password: userDefault.password, method: "getUserGoods")) { list, error in
             if let list = list {
                 self.goodsList.append(contentsOf: list)
-                print("list = ", list)
             } else {
                 if let error = error {
                     print("Error = ", error.localizedDescription)
@@ -31,9 +30,34 @@ final class GoodsViewModel: ObservableObject {
 
 struct GoodsView: View {
     @StateObject var listViewModel = GoodsViewModel()
+    @Binding var showMenu: Bool
 
     var body: some View {
         VStack {
+
+            VStack(spacing: 0){
+
+                HStack{
+
+                    Button {
+                        withAnimation{showMenu.toggle()}
+                    } label: {
+                        Image("profile")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 35, height: 35)
+                    }
+
+                    Spacer()
+
+                }
+
+                .padding([.leading, .trailing])
+
+                Divider()
+            }
+            .background(Color(.blue))
+
             List(listViewModel.goodsList) { item in
                 if (item.idTraining == nil) {
                     GoodScreen(idgoods: String(item.idGoods!), image: String(item.image!), goods: String(item.goods!))
@@ -50,7 +74,7 @@ struct GoodsView: View {
 
 struct GoodsView_Previews: PreviewProvider {
     static var previews: some View {
-        GoodsView()
+        BaseView()
     }
 }
 
