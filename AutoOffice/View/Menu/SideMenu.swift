@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AutoOfficeUI
 
 struct SideMenu: View {
     @Binding var showMenu: Bool
@@ -17,7 +18,8 @@ struct SideMenu: View {
 
             VStack(alignment: .leading, spacing: 15) {
 
-                if (userDefault.imageProfile == "") {
+
+                if (userDefault.imageProfile == nil) {
                     Image("profile")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -30,35 +32,6 @@ struct SideMenu: View {
 
                 Text("@ijustine")
                     .font(.callout)
-
-                HStack(spacing: 12){
-
-                    Button {
-
-                    } label: {
-
-                        Label {
-                            Text("Followers")
-                        } icon: {
-                            Text("189")
-                                .fontWeight(.bold)
-                        }
-                    }
-
-                    Button {
-
-                    } label: {
-
-                        Label {
-                            Text("Following")
-                        } icon: {
-                            Text("1.2M")
-                                .fontWeight(.bold)
-                        }
-                    }
-
-                }
-                .foregroundColor(.primary)
             }
             .padding()
             .padding(.leading)
@@ -67,88 +40,27 @@ struct SideMenu: View {
 
                 VStack(spacing: 10){
 
-                    VStack(alignment: .leading, spacing: 45) {
+                    VStack(spacing: 45) {
 
-                        // Tab Buttons...
-                        TabButton(title: "Profile", image: "Profile")
+                        NavPushButton(destination: HelpView()) {
+                            HStack(spacing: 14){
 
-                        TabButton(title: "Помощь", image: "Lists")
+                                Image(systemName: "questionmark.circle")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 22, height: 22)
 
-                        TabButton(title: "Topics", image: "Topics")
+                                Text("Помощь")
+                            }
+                        }
 
-                        TabButton(title: "Bookmarks", image: "Bookmarks")
-
-                        TabButton(title: "Moments", image: "Moments")
-
-                        TabButton(title: "Purchases", image: "Purchases")
-
-                        TabButton(title: "Monetization", image: "Monetization")
                     }
-                    .padding(.horizontal)
-                    .padding(.leading)
-                    .padding(.top,45)
 
                     Divider()
                         .padding(.vertical)
 
-                    TabButton(title: "Twitter Ads", image: "Ads")
-                        .padding(.horizontal)
-                        .padding(.leading)
-
-                    Divider()
-                        .padding(.vertical)
-
-                    VStack(alignment: .leading, spacing: 40) {
-
-                        Button("Settings And Privacy"){
-
-                        }
-
-                        Button("Help Center"){
-
-                        }
-                    }
-                    .padding(.horizontal)
-                    .padding(.leading)
-                    .padding(.bottom,20)
-                    .frame(maxWidth: .infinity,alignment: .leading)
-                    .foregroundColor(.primary)
                 }
-            }
-
-            VStack(spacing: 0){
-
-                Divider()
-
-                HStack{
-
-                    Button {
-
-                    } label: {
-
-                        Image("Light")
-                            .resizable()
-                            .renderingMode(.template)
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 22, height: 22)
-                    }
-
-                    Spacer()
-
-                    Button {
-
-                    } label: {
-
-                        Image("QR")
-                            .resizable()
-                            .renderingMode(.template)
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 22, height: 22)
-                    }
-                }
-                .padding([.horizontal,.top],15)
-                .padding(.bottom,safeArea().bottom == 0 ? 15 : 0)
-                .foregroundColor(.primary)
             }
         }
         .frame(maxWidth: .infinity,alignment: .leading)
@@ -165,7 +77,7 @@ struct SideMenu: View {
     }
 
     @ViewBuilder
-    func TabButton(title: String,image: String)->some View{
+    func TabButton(title: String, image: String)->some View{
 
         // For navigation...
         // Simple replace button with Navigation Links...
@@ -173,7 +85,9 @@ struct SideMenu: View {
         NavigationLink {
 
             if (title == "Помощь") {
-                HelpView(showHelp: $showHelp)
+
+                NavPushButton(destination: HelpView()) {
+                }
             }
 
         } label: {
