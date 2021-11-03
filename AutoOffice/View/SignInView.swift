@@ -11,13 +11,13 @@ import AutoOfficeUI
 
 struct SignInView: View {
 
-    @StateObject var userData = UserDefaultData()
-
-    @State var idshop = ""
+    @State var idshoop = ""
     @State var login = ""
     @State var password = ""
     @State var passShow = false
     @State var checked = true
+
+    let userDefault = UserDefaults.standard
 
     @State var message = ""
     @State var alert = false
@@ -43,7 +43,7 @@ struct SignInView: View {
                     Text("ID магазина")
                         .multilineTextAlignment(.center)
 
-                    TextField("Введите ID магазина", text: $idshop)
+                    TextField("Введите ID магазина", text: $idshoop)
                         .autocapitalization(.none)
                     Divider()
                 }
@@ -143,7 +143,7 @@ struct SignInView: View {
     }
 
     func entranceUser() {
-        self.idshop = self.idshop.trimmingCharacters(in: .whitespaces)
+        self.idshoop = self.idshoop.trimmingCharacters(in: .whitespaces)
         self.login = self.login.trimmingCharacters(in: .whitespaces)
         self.password = self.password.trimmingCharacters(in: .whitespaces)
         
@@ -153,14 +153,14 @@ struct SignInView: View {
                 print("user = ", user)
                 if (user.error == nil) {
                     if(checked) {
-                        UserDefaults.standard.set(true, forKey: "status")
+                        userDefault.set(true, forKey: "status")
                         NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                     } else {
                         NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                     }
-                    UserDefaults.standard.set(self.idshop, forKey: "idshop")
-                    UserDefaults.standard.set(self.login, forKey: "login")
-                    UserDefaults.standard.set(self.password, forKey: "password")
+                    userDefault.set(self.idshoop, forKey: "idshoop")
+                    userDefault.set(self.login, forKey: "login")
+                    userDefault.set(self.password, forKey: "password")
                     } else {
                         self.message = user.error!
                         self.alertUser.toggle()

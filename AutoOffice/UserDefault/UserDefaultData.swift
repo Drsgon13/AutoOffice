@@ -9,11 +9,15 @@ import Foundation
 
 public class UserDefaultData: ObservableObject {
 
-    @Published var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
-    @Published var idshop = UserDefaults.standard.value(forKey: "idshop") as? String ?? "sheremetev"
-    @Published var login = UserDefaults.standard.value(forKey: "login") as? String
-    @Published var password = UserDefaults.standard.value(forKey: "password") as? String
+    let status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+    let idshoop = UserDefaults.standard.value(forKey: "idshoop") as? String ?? "sheremetev"
+    let login = UserDefaults.standard.value(forKey: "login") as? String
+    let password = UserDefaults.standard.value(forKey: "password") as? String
 
-    @Published var imageProfile = UserDefaults.standard.value(forKey: "imageProfile") as? String
+    let imageProfile = UserDefaults.standard.value(forKey: "imageProfile") as? String
+    let phoneProfile = UserDefaults.standard.value(forKey: "phone") as? String
+    let lastNameProfile = UserDefaults.standard.value(forKey: "lastName") as? String
+    let firstNameProfile = UserDefaults.standard.value(forKey: "firstName") as? String
 
 }
+

@@ -14,7 +14,7 @@ struct LessonsView: View {
     @State var id_traning: String
 
     @State var lessonsList: [LessonsInfo] = []
-    @ObservedObject var userDefault = UserDefaultData()
+    let userDefault = UserDefaultData()
 
     init(id_traning: String) {
         self.id_traning = id_traning

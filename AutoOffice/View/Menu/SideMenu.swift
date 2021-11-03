@@ -10,7 +10,7 @@ import AutoOfficeUI
 
 struct SideMenu: View {
     @Binding var showMenu: Bool
-    @ObservedObject var userDefault = UserDefaultData()
+    let userDefault = UserDefaultData()
     @State var showHelp = true
     var body: some View {
 
@@ -74,37 +74,6 @@ struct SideMenu: View {
                 .ignoresSafeArea(.container, edges: .vertical)
         )
         .frame(maxWidth: .infinity,alignment: .leading)
-    }
-
-    @ViewBuilder
-    func TabButton(title: String, image: String)->some View{
-
-        // For navigation...
-        // Simple replace button with Navigation Links...
-
-        NavigationLink {
-
-            if (title == "Помощь") {
-
-                NavPushButton(destination: HelpView()) {
-                }
-            }
-
-        } label: {
-
-            HStack(spacing: 14){
-
-                Image(image)
-                    .resizable()
-                    .renderingMode(.template)
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 22, height: 22)
-
-                Text(title)
-            }
-            .foregroundColor(.primary)
-            .frame(maxWidth: .infinity,alignment: .leading)
-        }
     }
 }
 

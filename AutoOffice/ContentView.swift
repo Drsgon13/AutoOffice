@@ -7,14 +7,14 @@
 
 import SwiftUI
 import AutoOfficeUI
-
+@available(iOS 15.0, *)
 struct ContentView: View {
 
-    @StateObject var userData = UserDefaultData()
+    let userDefault = UserDefaultData()
 
     var body: some View {
         VStack{
-            if userData.status{
+            if userDefault.status {
                 NavControllerView(transition: .custom(.moveAndFade)) {
                     BaseView()
                 }
@@ -27,12 +27,12 @@ struct ContentView: View {
         }.animation(.spring())
             .onAppear {
                 NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
-                    userData.status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+
             }
         }
     }
 }
-
+@available(iOS 15.0, *)
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

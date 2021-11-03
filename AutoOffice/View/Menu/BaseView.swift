@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 15.0, *)
 struct BaseView: View {
     @State var showMenu: Bool = false
 
@@ -172,6 +173,7 @@ struct BaseView: View {
     }
 }
 
+@available(iOS 15.0, *)
 struct BaseView_Previews: PreviewProvider {
     static var previews: some View {
         BaseView()

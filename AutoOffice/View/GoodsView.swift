@@ -11,8 +11,8 @@ import Networking
 
 final class GoodsViewModel: ObservableObject {
 
+    let userDefault = UserDefaultData()
     @Published var goodsList: [GoodsInfo] = .init()
-    @ObservedObject var userDefault = UserDefaultData()
 
     init() {
         GoodsAPI.getUserGoods(goods: Goods(login: userDefault.login, password: userDefault.password, method: "getUserGoods")) { list, error in
@@ -28,6 +28,7 @@ final class GoodsViewModel: ObservableObject {
 
 }
 
+@available(iOS 15.0, *)
 struct GoodsView: View {
     @StateObject var listViewModel = GoodsViewModel()
     @Binding var showMenu: Bool
@@ -42,7 +43,8 @@ struct GoodsView: View {
                     Button {
                         withAnimation{showMenu.toggle()}
                     } label: {
-                        Image("profile")
+
+                        Image("menu")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 35, height: 35)
@@ -72,12 +74,14 @@ struct GoodsView: View {
     }
 }
 
+@available(iOS 15.0, *)
 struct GoodsView_Previews: PreviewProvider {
     static var previews: some View {
         BaseView()
     }
 }
 
+@available(iOS 15.0, *)
 struct GoodScreen: View {
 
     @State var image: String
@@ -93,23 +97,24 @@ struct GoodScreen: View {
 
     var body: some View {
         NavPushButton(destination: GoodView(idgoods: idgoods)) {
-            VStack {
-                Text("Good")
             HStack {
                 if (image != "") {
-                let imgURL = URL(string: image)
-                AsyncImage(url: imgURL!,
-                           placeholder: { Text("Loading ...") },
-                           image: { Image(uiImage: $0).resizable() })
-                    .frame(width: 80, height: 80)
-                Text(verbatim: goods)
+                    let imgURL = URL(string: image)
+                    AsyncImage(url: imgURL) { image in image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 80, height: 80)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    Text(verbatim: goods)
                 }
-            }
             }
         }
     }
 }
 
+@available(iOS 15.0, *)
 struct LessonsScreen: View {
 
     @State var image: String
@@ -125,18 +130,18 @@ struct LessonsScreen: View {
 
     var body: some View {
         NavPushButton(destination: LessonsView(id_traning: id_traning)) {
-            VStack {
-                Text("Lessons")
             HStack {
                 if (image != "") {
-                let imgURL = URL(string: image)
-                AsyncImage(url: imgURL!,
-                           placeholder: { Text("Loading ...") },
-                           image: { Image(uiImage: $0).resizable() })
-                    .frame(width: 80, height: 80)
-                Text(verbatim: goods)
-            }
-            }
+                    let imgURL = URL(string: image)
+                    AsyncImage(url: imgURL) { image in image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 80, height: 80)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    Text(verbatim: goods)
+                }
             }
         }
     }
